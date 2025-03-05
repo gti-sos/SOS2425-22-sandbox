@@ -78,3 +78,5 @@ let contactList = [{
 }];
 // el ,null,2 es pa q se vea mejor el resultado del stringify
 log(JSON.stringify(contactList,null,2));
+
+//L04
