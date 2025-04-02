@@ -1,6 +1,6 @@
 //const express = require("express");
 import express from "express";
-import { loadBackend } from "./src/back";
+import { loadBackend } from "./src/back/index.js";
 //Como vamos a utilizar nedb hay que hacer npm intall nedb
 const app = express();
 const PORT = process.env.PORT || 16078;

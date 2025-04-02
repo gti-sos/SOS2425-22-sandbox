@@ -17,6 +17,7 @@ let initialContacts = [
 db.find({},(err,contacts)=>{ //va a hacer find va a devolver todos por eso se pone {} y como es asincrona se pone callback y este find puede devolver un error o los objetos q esta buscando
     if (contacts.length < 1){
         db.insert(initialContacts);
+        console.log("Se han insertado los contactos")
     }
 })
 
@@ -42,12 +43,12 @@ function loadBackend(app){
     
         response.sendStatus(201);
     });
+    
     //Borrado de un recurso concreto
     app.delete(BASE_API + "/contacts/:name",(request,response) => {
         let name = request.params.name
         console.log(`DELETE to /contacts/${name}`);
-        let newContact = request.body;
-        
+
         db.remove({"name" : name},{},(err,numRemoved)=>{
             if(err){
                 //response.sendStatus(500); Asi seria sin mensaje aparte
@@ -60,9 +61,10 @@ function loadBackend(app){
                 }
             }
         });
-    
-        response.sendStatus(201);
-    })
-}
+    });
 
+    app.get(BASE_API + "/docs",(request,response) => {
+        response.redirect("https://documenter.getpostman.com/view/33043526/2sB2cRE4rB");
+    });
+}
 export {loadBackend};
